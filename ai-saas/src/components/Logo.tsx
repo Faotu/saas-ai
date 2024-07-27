@@ -2,15 +2,17 @@ import Image from "next/image";
 import React from "react";
 
 import { MuseoModerno } from "next/font/google";
+import Link from "next/link";
+import { cn } from "../lib/utils";
 
-const Museo = MuseoModerno({
+const museo = MuseoModerno({
   weight: "700",
   subsets: ["latin"],
 });
 
 const Logo = () => {
   return (
-    <div>
+    <Link href="/" className="flex flex-col items-center ">
       <Image
         src="/logo.svg"
         width={64}
@@ -18,8 +20,8 @@ const Logo = () => {
         alt="logo"
         className="pt-4"
       />
-      <h2>Magic Social</h2>
-    </div>
+      <h2 className={cn(museo.className, "text-xl")}>AI SaaS App</h2>
+    </Link>
   );
 };
 

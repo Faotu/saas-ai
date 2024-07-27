@@ -1,7 +1,15 @@
-import Logo from "@/components/Logo";
 import Link from "next/link";
+import Logo from "../components/Logo";
+import Auth from "../components/Auth";
+
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const { userId } = auth();
+  if (userId) {
+    redirect("/dashboard");
+  }
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <header className="px-4 pt-5 lg:px-6 h-14 flex items-center">
@@ -10,10 +18,10 @@ export default function Home() {
           href="#"
           className="flex items-center justify-center"
           prefetch={false}
-        >
-          <span className="sr-only">Acme Inc</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">Auth</nav>
+        ></Link>
+        <nav className="ml-auto flex gap-4 sm:gap-6">
+          <Auth />
+        </nav>
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
