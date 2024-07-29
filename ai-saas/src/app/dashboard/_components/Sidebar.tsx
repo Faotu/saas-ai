@@ -1,27 +1,30 @@
+"use client";
 import Logo from "@/src/components/Logo";
+import { cn } from "@/src/lib/utils";
 import { CreditCard, History, WandSparkles } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 const menuList = [
   {
     name: "Magic Tools",
     icon: WandSparkles,
-    path: "/dashboad",
+    path: "/dashboard",
   },
   {
     name: "Output History",
     icon: History,
-    path: "/dashboad/history",
+    path: "/dashboard/history",
   },
   {
     name: "Upgrade",
     icon: CreditCard,
-    path: "/dashboad/upgrade",
+    path: "/dashboard/upgrade",
   },
 ];
 
 const Sidebar = () => {
+  const path = usePathname();
   return (
     <div className="p-5 bg-white h-[800px] flex flex-col">
       <Logo />
@@ -30,7 +33,10 @@ const Sidebar = () => {
           <Link
             href={menu.path}
             key={menu.name}
-            className="flex gap-2 mb-2 p-3 hover:bg-primary hover:text-white cursor-pointer rounded-lg items-center"
+            className={cn(
+              "flex gap-2 mb-2 p-3 hover:bg-primary hover:text-white cursor-pointer rounded-lg items-center",
+              path === menu.path && "bg-primary text-white"
+            )}
           >
             <menu.icon className="h-6 w-6"></menu.icon>
             <h2 className="text-lg">{menu.name}</h2>
