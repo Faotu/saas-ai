@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AI-SaaS app",
-  description: "Created by Faotu",
+  description: "Created by Faotu Happy",
 };
 
 export default function RootLayout({

@@ -1,8 +1,40 @@
 import Auth from "@/src/components/Auth";
 import { SearchIcon } from "lucide-react";
 import React from "react";
+import { Categories } from "./categories";
 
-const SearchDashboard = () => {
+const categories = [
+  {
+    name: "All",
+    value: "All",
+  },
+  {
+    name: "Youtube",
+    value: "Youtube",
+  },
+  {
+    name: "Instagram",
+    value: "Instagram",
+  },
+  {
+    name: "Tiktok",
+    value: "Tiktok",
+  },
+  {
+    name: "Linkedin",
+    value: "Linkedin",
+  },
+  {
+    name: "Tweet",
+    value: "Tweet",
+  },
+];
+
+export const SearchDashboard = ({
+  onSearchInput,
+}: {
+  onSearchInput: React.Dispatch<React.SetStateAction<string | undefined>>;
+}) => {
   return (
     <div className="mx-5 py-2">
       <div className="flex  md:flex-row gap-2 mt-5 py-6 px-4 bg-white">
@@ -12,8 +44,11 @@ const SearchDashboard = () => {
             type="text"
             placeholder="Search..."
             className="bg-transparent outline-none text-black"
+            onChange={(e) => onSearchInput(e.target.value)}
           />
         </div>
+        <Categories items={categories} />
+
         <div className="ml-auto">
           <Auth />
         </div>
@@ -21,5 +56,3 @@ const SearchDashboard = () => {
     </div>
   );
 };
-
-export default SearchDashboard;
