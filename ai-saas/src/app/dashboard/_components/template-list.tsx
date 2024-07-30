@@ -2,10 +2,27 @@
 
 import { contentTemplates } from "@/src/lib/content-template";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export const TemplateList = ({ searchInput }: { searchInput: string }) => {
   const [templateList, setTemplateList] = useState(contentTemplates);
+
+  const searchParams = useSearchParams();
+  const searchCategory = searchParams.get("category");
+
+  useEffect(() => {
+    if (searchCategory === "All") {
+      setTemplateList(contentTemplates);
+    } else if (searchCategory) {
+      const filteredTemplates = contentTemplates.filter(
+        (item) => item.category === searchCategory
+      );
+      setTemplateList(filteredTemplates);
+    } else {
+      setTemplateList(contentTemplates);
+    }
+  }, [searchCategory]);
 
   // Search Input
   useEffect(() => {
